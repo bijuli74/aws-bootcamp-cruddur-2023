@@ -1,15 +1,20 @@
 import './ProfileHeading.css';
 import EditProfileButton from '../components/EditProfileButton';
-
 import ProfileAvatar from 'components/ProfileAvatar'
+import React from "react";
 
 export default function ProfileHeading(props) {
+
   const backgroundImage = 'url("https://assets.cruddur.com/banners/banner.jpg")';
   const styles = {
     backgroundImage: backgroundImage,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
+  // console.log(props.user.display_name);
+  console.log(props.profile);
+
+
   return (
   <div className='activity_feed_heading profile_heading'>
     <div className='title'>{props.profile.display_name}</div>
