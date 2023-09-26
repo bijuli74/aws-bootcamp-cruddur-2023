@@ -131,6 +131,7 @@ def rollbar_test():
     return "Hello World!"
 
 @app.route("/api/message_groups", methods=['GET'])
+@cross_origin()
 def data_message_groups():
   access_token = extract_access_token(request.headers)
   try:
@@ -151,6 +152,7 @@ def data_message_groups():
 
 
 @app.route("/api/messages/<string:message_group_uuid>", methods=['GET'])
+@cross_origin()
 def data_messages(message_group_uuid):
   access_token = extract_access_token(request.headers)
   try:
@@ -278,7 +280,9 @@ def data_activities():
     app.logger.debug(e)
     return {}, 401
 
-@app.route("/api/activities/<string:activity_uuid>", methods=['GET'])
+# @app.route("/api/activities/<string:activity_uuid>", methods=['GET'])
+@app.route("/api/activities/@<string:handle>/status/<string:activity_uuid>", methods=['GET'])
+@cross_origin()
 @xray_recorder.capture('activities_show')
 def data_show_activity(activity_uuid):
   data = ShowActivity.run(activity_uuid=activity_uuid)

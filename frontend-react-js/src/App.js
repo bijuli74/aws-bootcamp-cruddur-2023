@@ -1,6 +1,8 @@
 import './App.css';
+import './components/Popup.css';
 
 import HomeFeedPage from './pages/HomeFeedPage';
+import NotificationsFeedPage from './pages/NotificationsFeedPage';
 import UserFeedPage from './pages/UserFeedPage';
 import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
@@ -9,8 +11,8 @@ import MessageGroupsPage from './pages/MessageGroupsPage';
 import MessageGroupPage from './pages/MessageGroupPage';
 import MessageGroupNewPage from './pages/MessageGroupNewPage';
 import ConfirmationPage from './pages/ConfirmationPage';
+import ActivityShowPage from './pages/ActivityShowPage';
 import React from 'react';
-import process from 'process';
 import {
   createBrowserRouter,
   RouterProvider
@@ -39,8 +41,16 @@ const router = createBrowserRouter([
     element: <HomeFeedPage />
   },
   {
+    path: "/notifications",
+    element: <NotificationsFeedPage />
+  },
+  {
     path: "/@:handle",
     element: <UserFeedPage />
+  },
+  {
+    path: "/@:handle/status/:activity_uuid",
+    element: <ActivityShowPage />
   },
   {
     path: "/messages",
