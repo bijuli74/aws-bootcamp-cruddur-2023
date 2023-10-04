@@ -5,14 +5,12 @@ import React from "react";
 
 export default function ProfileHeading(props) {
 
-  const backgroundImage = 'url("https://assets.cruddur.com/banners/banner.jpg")';
+  const backgroundImage = 'url("https://assets.bijuli.xyz/banners/banner.jpg")';
   const styles = {
     backgroundImage: backgroundImage,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
-  // console.log(props.user.display_name);
-  console.log(props.profile);
 
 
   return (
