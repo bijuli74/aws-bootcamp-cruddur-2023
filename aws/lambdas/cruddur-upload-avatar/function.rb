@@ -12,7 +12,8 @@ def handler(event:, context:)
             headers: {
                 "Access-Control-Allow-Headers": "*, Authorization",
                 "Access-Control-Allow-Origin": "https://localhost:3000",
-                "Access-Control-Allow-Mehtods": "OPTION,GET,POST"
+                "Access-Control-Allow-Origin": "https://bijuli.xyz",
+                "Access-Control-Allow-Methods": "OPTION,GET,POST"
             },
             statusCode: 200
         }
@@ -39,7 +40,7 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://localhost:3000",
+        "Access-Control-Allow-Origin": "https://bijuli.xyz",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200, 

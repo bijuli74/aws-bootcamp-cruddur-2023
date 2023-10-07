@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'bijuli-cfn-artifacts'
+region = 'eu-west-1'
+stack_name = 'CrdSyncRole'
+
+[parameters]
+GitHubOrg = 'bijuli74'
+RepositoryName = 'aws-bootcamp-cruddur-2023'
+OIDCProviderArn = ''

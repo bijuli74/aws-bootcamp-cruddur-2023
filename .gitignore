@@ -1,4 +1,5 @@
 /docker/**/*
 *.env
+*.zip
 frontend-react-js/build/*
 node_modules

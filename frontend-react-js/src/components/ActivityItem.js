@@ -1,5 +1,5 @@
 import './ActivityItem.css';
-
+import { Link } from "react-router-dom";
 import ActivityContent  from '../components/ActivityContent';
 import ActivityActionReply  from '../components/ActivityActionReply';
 import ActivityActionRepost  from '../components/ActivityActionRepost';

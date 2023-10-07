@@ -2,18 +2,20 @@ import './ProfileForm.css';
 import React from "react";
 import process from 'process';
 import {getAccessToken} from 'lib/CheckAuth';
+import {put} from 'lib/Requests';
+import FormErrors from 'components/FormErrors';
 
 export default function ProfileForm(props) {
-  const [bio, setBio] = React.useState(0);
-  const [displayName, setDisplayName] = React.useState(0);
+  const [bio, setBio] = React.useState('');
+  const [displayName, setDisplayName] = React.useState('');
+  const [errors, setErrors] = React.useState('');
 
   React.useEffect(()=>{
-    console.log('useEffects',props)
-    setBio(props.profile.bio);
+    setBio(props.profile.bio || '');
     setDisplayName(props.profile.display_name);
   }, [props.profile])
 
-    const s3uploadkey = async (extension)=> {
+  const s3uploadkey = async (extension)=> {
     console.log('ext',extension)
     try {
       const gateway_url = `${process.env.REACT_APP_API_GATEWAY_ENDPOINT_URL}/avatars/key_upload`
@@ -70,36 +72,23 @@ export default function ProfileForm(props) {
       console.log(err);
     }
   }
-  
+
   const onsubmit = async (event) => {
     event.preventDefault();
-    try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/profile/update`
-      await getAccessToken()
-      const access_token = localStorage.getItem("access_token")
-      const res = await fetch(backend_url, {
-        method: "POST",
-        headers: {
-          'Authorization': `Bearer ${access_token}`,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          bio: bio,
-          display_name: displayName
-        }),
-      });
-      let data = await res.json();
-      if (res.status === 200) {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/profile/update`
+    const payload_data = {
+      bio: bio,
+      display_name: displayName
+    }
+    put(url,payload_data,{
+      auth: true,
+      setErrors: setErrors,
+      success: function(data){
         setBio(null)
         setDisplayName(null)
         props.setPopped(false)
-      } else {
-        console.log(res)
       }
-    } catch (err) {
-      console.log(err);
-    }
+    })
   }
 
   const bio_onchange = (event) => {
@@ -111,7 +100,6 @@ export default function ProfileForm(props) {
   }
 
   const close = (event)=> {
-    console.log('close',event.target)
     if (event.target.classList.contains("profile_popup")) {
       props.setPopped(false)
     }
@@ -124,8 +112,8 @@ export default function ProfileForm(props) {
           className='profile_form popup_form'
           onSubmit={onsubmit}
         >
-          <div class="popup_heading">
-            <div class="popup_title">Edit Profile</div>
+          <div className="popup_heading">
+            <div className="popup_title">Edit Profile</div>
             <div className='submit'>
               <button type='submit'>Save</button>
             </div>
@@ -150,6 +138,7 @@ export default function ProfileForm(props) {
                 onChange={bio_onchange} 
               />
             </div>
+            <FormErrors errors={errors} />
           </div>
         </form>
       </div>
