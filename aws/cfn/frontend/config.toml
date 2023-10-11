@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'cfn-artifacts-bijuli'
+region = 'eu-west-1'
+stack_name = 'CrdFrontend'
+
+[parameters]
+Certification = 'arn:aws:acm:'
+WwwBucketName = 'www.bijuli.xyz'
+RootBucketName = 'bijuli.xyz'

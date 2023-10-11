@@ -1,0 +1,12 @@
+[deploy]
+bucket = 'cfn-artifacts-bijuli'
+region = 'eu-west-1'
+stack_name = 'CrdCicd'
+
+[parameters]
+ServiceStack = 'CrdSrvBackendFlask'
+ClusterStack = 'CrdCluster'
+GitHubBranch = 'prod'
+GithubRepo = 'bijuli74/aws-bootcamp-cruddur-2023'
+ArtifactBucketName = 'codepipeline-cruddur-artifacts-bijju'
+BuildSpec = 'backend-flask/buildspec.yml'

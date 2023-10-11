@@ -45,7 +45,7 @@ def handler(event:, context:)
         headers: {
           "Access-Control-Allow-Headers": "*, Authorization",
           "Access-Control-Allow-Origin": "https://bijuli.xyz",
-          "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
+          "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PUT"
         },
         statusCode: 200, 
         body: body 
