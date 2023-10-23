@@ -2,8 +2,8 @@
 
 set -e
 
-CFN_PATH="/workspace/aws-bootcamp-cruddur-2023/aws/cfn/service/template.yaml"
-CONFIG_PATH="/workspace/aws-bootcamp-cruddur-2023/aws/cfn/service/config.toml"
+CFN_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/service/template.yaml"
+CONFIG_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/service/config.toml"
 
 cfn-lint $CFN_PATH
 
