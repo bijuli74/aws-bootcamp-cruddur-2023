@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-set -e # stop the execution of the script if it fails
+# set -e # stop the execution of the script if it fails
 
 CFN_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/cicd/template.yaml"
 CONFIG_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/cicd/config.toml"
@@ -20,8 +20,8 @@ aws cloudformation package \
     --template-file $CFN_PATH \
     --s3-bucket $BUCKET \
     --s3-prefix cicd-package \
-    --region $REGION 
-    --output-template-file "$PACKAGED_PATH"
+    --region $REGION \
+    --output-template-file $PACKAGED_PATH
 
 aws cloudformation deploy \
     --stack-name $STACK_NAME \
