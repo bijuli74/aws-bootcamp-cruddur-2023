@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set -e # stop the execution of the script if it fails
 
-CFN_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/networking/template.yml"
+CFN_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/networking/template.yaml"
 CONFIG_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/networking/config.toml"
 echo $CFN_PATH
 
@@ -16,7 +16,7 @@ aws cloudformation deploy \
   --s3-bucket $BUCKET \
   --s3-prefix networking \
   --region $REGION \
-  --template-file "$CFN_PATH" \
+  --template-file $CFN_PATH \
   --no-execute-changeset \
   --tags group=cruddur-networking \
   --capabilities CAPABILITY_NAMED_IAM

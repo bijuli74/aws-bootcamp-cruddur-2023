@@ -4,6 +4,6 @@ region = 'eu-west-1'
 stack_name = 'CrdFrontend'
 
 [parameters]
-Certification = 'arn:aws:acm:'
+CertificateArn = 'arn:aws:acm:us-east-1:404100009949:certificate/d325f5e0-c2a4-4cdf-866b-50205331d119'
 WwwBucketName = 'www.bijuli.xyz'
 RootBucketName = 'bijuli.xyz'

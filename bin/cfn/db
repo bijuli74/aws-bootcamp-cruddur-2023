@@ -1,11 +1,10 @@
-#! /usr/bin/bash
-
-set -e
+#! /usr/bin/env bash
+set -e #stop the execution of the script if it fails
 
 CFN_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/db/template.yaml"
 CONFIG_PATH="/root/workspace/aws-bootcamp-cruddur-2023/aws/cfn/db/config.toml"
 
-cfn-lint $CFN_PATH
+cfn-lint $CFN_PATH 
 
 BUCKET=$(cfn-toml key deploy.bucket -t $CONFIG_PATH)
 REGION=$(cfn-toml key deploy.region -t $CONFIG_PATH)
@@ -13,8 +12,8 @@ STACK_NAME=$(cfn-toml key deploy.stack_name -t $CONFIG_PATH)
 PARAMETERS=$(cfn-toml params v2 -t $CONFIG_PATH)
 
 aws cloudformation deploy \
-    --stack-name $STACK_NAME
-    --s3-bucket $BUCKET
+    --stack-name $STACK_NAME \
+    --s3-bucket $BUCKET \
     --s3-prefix db \
     --region $REGION \
     --template-file $CFN_PATH \
@@ -22,4 +21,3 @@ aws cloudformation deploy \
     --tags group="cruddur-db" \
     --parameter-overrides $PARAMETERS MasterUserPassword=$DB_PASSWORD \
     --capabilities CAPABILITY_NAMED_IAM
-    
