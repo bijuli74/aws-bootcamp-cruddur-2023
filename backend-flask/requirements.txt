@@ -1,5 +1,7 @@
-flask==2.2
+flask==2.2.2
 flask-cors
+
+Werkzeug==2.2.2
 
 opentelemetry-api 
 opentelemetry-sdk 

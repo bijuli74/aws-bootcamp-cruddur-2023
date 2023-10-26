@@ -6,5 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rake'
+gem 'nokogiri'
 gem 'aws_s3_website_sync', tag: '1.0.1'
 gem 'dotenv', groups: [:development, :test]
