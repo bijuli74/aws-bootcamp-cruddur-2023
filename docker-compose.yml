@@ -33,7 +33,10 @@ services:
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
       AWS_COGNITO_USER_POOL_ID: "eu-west-1_XoDucIyrk"
       AWS_COGNITO_USER_POOL_CLIENT_ID: "7m0rns6g78hbrshgql3f62blk3"
-    build: ./backend-flask
+    # build: ./backend-flask
+    build:
+      context: ./backend-flask
+      dockerfile: Dockerfile.prod
     ports:
       - "4567:4567"
     networks:
