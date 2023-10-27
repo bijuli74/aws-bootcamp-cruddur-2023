@@ -63,7 +63,7 @@ Parameters:
     Default: "/api/health-check"
   BackendHealthCheckPort:
     Type: String
-    Default: 4567
+    Default: '4567'
   BackendHealthCheckProtocol:
     Type: String
     Default: HTTP
