@@ -11,9 +11,8 @@ def handler(event:, context:)
         {
             headers: {
                 "Access-Control-Allow-Headers": "*, Authorization",
-                # "Access-Control-Allow-Origin": "https://localhost:3000",
                 "Access-Control-Allow-Origin": "https://bijuli.xyz",
-                "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
+                "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PUT"
             },
             statusCode: 200
         }
@@ -28,8 +27,7 @@ def handler(event:, context:)
       # cognito_user_uuid = decoded_token[0]['sub']
       
       cognito_user_uuid = event["requestContext"]["authorizer"]["lambda"]["sub"]
-
-      puts({step: 'presign url', sub_value: cognito_user_id}.to_json)
+      puts({ cognito_user_uuid: cognito_user_uuid }.to_json)
 
       s3 = Aws::S3::Resource.new
       bucket_name = ENV["UPLOADS_BUCKET_NAME"]
@@ -45,7 +43,7 @@ def handler(event:, context:)
         headers: {
           "Access-Control-Allow-Headers": "*, Authorization",
           "Access-Control-Allow-Origin": "https://bijuli.xyz",
-          "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
+          "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PUT"
         },
         statusCode: 200, 
         body: body 

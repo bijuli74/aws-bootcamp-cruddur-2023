@@ -9,11 +9,11 @@ export default function SigninPage() {
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [errors, setErrors] = React.useState('');
+  const [errors, setErrors] = React.useState([]);
 
   const onsubmit = async (event) => {
-    setErrors('')
     event.preventDefault();
+    setErrors([])
     Auth.signIn(email, password)
     .then(user => {
       console.log('user',user)
@@ -34,11 +34,6 @@ export default function SigninPage() {
   }
   const password_onchange = (event) => {
     setPassword(event.target.value);
-  }
-
-  let el_errors;
-  if (errors){
-    el_errors = <div className='errors'>{errors}</div>;
   }
 
   return (
