@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'cfn-artifacts-bijuli'
+region = 'eu-west-1'
+stack_name = 'CrdSrvBackendFlask'
+
+[parameters]
+EnvFrontendUrl = 'https://bijuli.xyz'
+EnvBackendUrl = 'https://api.bijuli.xyz'
+DDBMessageTable = 'CrdDdb-DynamoDBTable-1S0LDA8A5VEOW'

@@ -1,5 +1,5 @@
 [deploy]
-bucket = 'bijuli-cfn-artifacts'
+bucket = 'cfn-artifacts-bijuli'
 region = 'eu-west-1'
 stack_name = 'CrdSyncRole'
 

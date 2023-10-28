@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from lib.db import db
 
+
 class CreateActivity:
     def run(message, cognito_user_id, ttl):
         model = {
