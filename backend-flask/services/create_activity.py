@@ -34,7 +34,7 @@ class CreateActivity:
         if message == None or len(message) < 1:
             model['errors'] = ['message_blank']
         elif len(message) > 280:
-            model['errors'] = ['message_exceed_max_chars']
+            model['errors'] = ['message_exceed_max_chars_1024']
 
         if model['errors']:
             model['data'] = {
@@ -62,3 +62,13 @@ class CreateActivity:
         return db.query_object_json(sql, {
             'uuid': uuid
         })
+
+    def delete_old_activities(ttl):
+        now = datetime.now(timezone.utc).astimezone()
+        expires_at = now - timedelta(hours=int(ttl))
+
+        sql = db.template('activities', 'delete')
+        db.query_commit(sql, {
+            'expires_at': expires_at
+        })
+        return None
