@@ -28,6 +28,7 @@ def load(app):
     @jwt_required(on_error=default_home_feed)
     def data_home():
         data = HomeActivities.run(cognito_user_id=g.cognito_user_id)
+        CreateActivity.delete_old_activities('12')  # delete after 12 hrs
         return data, 200
 
     @app.route("/api/activities/notifications", methods=['GET'])
