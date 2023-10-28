@@ -2,12 +2,13 @@ import './SignupPage.css';
 import React from "react";
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 import { Link } from "react-router-dom";
+import FormErrors from 'components/FormErrors';
 
 import { Auth } from 'aws-amplify';
 
 export default function SignupPage() {
 
-  // Username is Email
+  // Username is Eamil
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
@@ -21,7 +22,7 @@ export default function SignupPage() {
     console.log('email',email)
     console.log('name',name)
     try {
-      const { user } = await Auth.signUp({
+          const { user } = await Auth.signUp({
         username: email,
         password: password,
         attributes: {
@@ -30,13 +31,13 @@ export default function SignupPage() {
           preferred_username: username,
         },
         autoSignIn: { // optional - enables auto sign in after user is confirmed
-          enabled: true,
+            enabled: true,
         }
       });
       console.log(user);
       window.location.href = `/confirm?email=${email}`
     } catch (error) {
-        setErrors(error.message)
+        setErrors([error.message])
     }
     return false
   }
@@ -102,7 +103,7 @@ export default function SignupPage() {
               />
             </div>
           </div>
-          {el_errors}
+          <FormErrors errors={errors} />
           <div className='submit'>
             <button type='submit'>Sign Up</button>
           </div>
