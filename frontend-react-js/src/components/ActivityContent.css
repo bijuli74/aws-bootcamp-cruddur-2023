@@ -4,10 +4,6 @@
   align-items: flex-start;
 }
 
-.activity_content_wrap .message {
-  color: #fff
-}
-
 .activity_content {
   flex-grow: 1;
   padding-left: 12px;
@@ -46,7 +42,6 @@
   font-weight: 800;
   color: #fff;
 }
-
 .activity_content .activity_identity .display_name:hover {
   text-decoration: underline;
 }

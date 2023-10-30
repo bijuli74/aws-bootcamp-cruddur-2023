@@ -15,10 +15,10 @@ export default function ActivityShowItem(props) {
   attrs.className = 'activity_item expanded'
   return (
     <div {...attrs}>
-      <div className="acitivty_main">
+      <div className="activity_main">
         <div className='activity_content_wrap'>
-          <div className='activity_content'>
             <Link className='activity_avatar'to={`/@`+props.activity.handle} ></Link>
+          <div className='activity_content'>
             <div className='activity_meta'>
               <div className='activity_identity' >
                 <Link className='display_name' to={`/@`+props.activity.handle}>{props.activity.display_name}</Link>
@@ -34,8 +34,8 @@ export default function ActivityShowItem(props) {
                 </div>
               </div>{/* activity_times */}
             </div>{/* activity_meta */}
+            <div className="message">{props.activity.message}</div>
           </div>{/* activity_content */}
-          <div className="message">{props.activity.message}</div>
         </div>
 
         <div className='expandedMeta'>

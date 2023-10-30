@@ -1,6 +1,8 @@
 import './ConfirmationPage.css';
 import React from "react";
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 
 // [TODO] Authenication
@@ -12,7 +14,9 @@ export default function ConfirmationPage() {
   const [errors, setErrors] = React.useState('');
   const [codeSent, setCodeSent] = React.useState(false);
 
-  const params = useParams();
+  // const params = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const code_onchange = (event) => {
     setCode(event.target.value);
@@ -45,7 +49,8 @@ export default function ConfirmationPage() {
     setErrors('')
     try {
       await Auth.confirmSignUp(email, code);
-      window.location.href = "/"
+      // window.location.href = "/signin"
+      navigate(`/signin`);
     } catch (error) {
       setErrors(error.message)
     }
@@ -65,11 +70,18 @@ export default function ConfirmationPage() {
     code_button = <button className="resend" onClick={resend_code}>Resend Activation Code</button>;
   }
 
-  React.useEffect(()=>{
-    if (params.email) {
-      setEmail(params.email)
+  // React.useEffect(()=>{
+  //   if (params.email) {
+  //     setEmail(params.email)
+  //   }
+  // }, [])
+
+  React.useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    if (searchParams.has('email')) {
+      setEmail(searchParams.get('email'));
     }
-  }, [])
+  }, []);
 
   return (
     <article className="confirm-article">
