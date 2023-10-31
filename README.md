@@ -1,5 +1,5 @@
-# FREE AWS Cloud Project Bootcamp
-
+# AWS Cloud Project Bootcamp
+[Try it Live here ](https://bijuli.xyz)
 - Application: Cruddur
 - Cohort: 2023-A1
 
